@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bean & Bloom • Specialty Coffee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-dark: #1a120f;
+      --color-medium: #3a2c24;
+      --color-light: #f9f5f2;
+      --color-accent: #c89f6c;
+      --color-accent-dark: #a67c52;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', system-ui, sans-serif;
+      background-color: var(--color-light);
+      color: var(--color-dark);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+
+    /* ─── Header / Hero ─── */
+    header {
+      height: 100vh;
+      min-height: 720px;
+      background: linear-gradient(rgba(26, 18, 15, 0.68), rgba(26, 18, 15, 0.82)),
+                  url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=2340&q=80') center/cover no-repeat;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .logo {
+      position: absolute;
+      top: 40px;
+      font-size: 2.1rem;
+      letter-spacing: 4px;
+      font-weight: 700;
+      color: var(--color-accent);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+    }
+
+    .hero-content {
+      max-width: 780px;
+      padding: 0 20px;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(3.4rem, 9vw, 7.2rem);
+      line-height: 0.92;
+      margin-bottom: 1.4rem;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.75);
+    }
+
+    .hero-content p {
+      font-size: 1.35rem;
+      max-width: 540px;
+      margin: 0 auto 2.2rem;
+      opacity: 0.95;
+      font-weight: 300;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 16px 38px;
+      background-color: var(--color-accent);
+      color: var(--color-dark);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.28s;
+      box-shadow: 0 6px 20px rgba(200,159,108,0.35);
+    }
+
+    .btn:hover {
+      background-color: var(--color-accent-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(166,124,82,0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--color-accent);
+      color: var(--color-accent);
+      margin-left: 1.4rem;
+    }
+
+    .btn-outline:hover {
+      background: var(--color-accent);
+      color: var(--color-dark);
+    }
+
+    /* ─── Main Content ─── */
+    main {
+      padding: 120px 5% 80px;
+    }
+
+    section {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 3.4rem;
+      text-align: center;
+      margin-bottom: 3.5rem;
+      color: var(--color-medium);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-text h3 {
+      font-size: 2.1rem;
+      margin-bottom: 1.4rem;
+      color: var(--color-medium);
+    }
+
+    .highlight {
+      color: var(--color-accent);
+    }
+
+    .coffee-img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+      transform: perspective(1200px) rotateY(8deg);
+      transition: transform 0.6s;
+    }
+
+    .coffee-img:hover {
+      transform: perspective(1200px) rotateY(0deg);
+    }
+
+    /* Menu */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      margin-top: 5rem;
+    }
+
+    .menu-item {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.14);
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .menu-content {
+      padding: 24px;
+      text-align: center;
+    }
+
+    .menu-content h3 {
+      font-size: 1.45rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      margin: 0.8rem 0;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--color-dark);
+      color: #c9b8ac;
+      text-align: center;
+      padding: 80px 20px 40px;
+    }
+
+    footer h2 {
+      color: var(--color-accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links a {
+      color: #c9b8ac;
+      font-size: 1.8rem;
+      margin: 0 18px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: var(--color-accent);
+    }
+
+    .copyright {
+      margin-top: 3rem;
+      font-size: 0.92rem;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+      
+      .hero-content h1 {
+        font-size: 4.8rem;
+      }
+      
+      .hero-content p {
+        font-size: 1.18rem;
+      }
+      
+      h2 {
+        font-size: 2.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">BEAN & BLOOM</div>
+    
+    <div class="hero-content">
+      <h1>Good Coffee<br>Good Days</h1>
+      <p>Single-origin • Specialty roast • Handcrafted with care</p>
+      
+      <div>
+        <a href="#menu" class="btn">View Menu</a>
+        <a href="#" class="btn btn-outline">Find Us</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about">
+      <div class="grid-2">
+        <div class="about-text">
+          <h2>More than <span class="highlight">just</span> coffee</h2>
+          <h3>We source, we roast, we serve with heart</h3>
+          <p>Every bean we use tells a story — from the highland farms of Ethiopia to the misty mountains of Colombia. We roast in small batches to bring out the unique character of each origin.</p>
+          <p>Come for the coffee, stay for the atmosphere.</p>
+        </div>
+        
+        <div>
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="Barista pouring latte art" class="coffee-img">
+        </div>
+      </div>
+    </section>
+
+    <section id="menu">
+      <h2>Our Signature Drinks</h2>
+      
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?auto=format&fit=crop&w=800&q=80" alt="Flat white">
+          <div class="menu-content">
+            <h3>Flat White</h3>
+            <p>Double ristretto + velvety microfoam</p>
+            <div class="price">₹ 220</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1572449043416-55f4685c9bb7?auto=format&fit=crop&w=800&q=80" alt="V60 pour over">
+          <div class="menu-content">
+            <h3>V60 Pour Over</h3>
+            <p>Single-origin hand-brewed</p>
+            <div class="price">₹ 260</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1577968898878-628493a29c6f?auto=format&fit=crop&w=800&q=80" alt="Iced latte">
+          <div class="menu-content">
+            <h3>Iced Honey Latte</h3>
+            <p>Espresso + milk + raw honey</p>
+            <div class="price">₹ 245</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1622484212850-eb596d0f784e?auto=format&fit=crop&w=800&q=80" alt="Cold brew">
+          <div class="menu-content">
+            <h3>Cold Brew</h3>
+            <p>72-hour slow steep</p>
+            <div class="price">₹ 230</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <h2>Bean & Bloom</h2>
+    <p>Opening Hours • Mon–Sun 7:30 – 20:30</p>
+    
+    <div class="social-links" style="margin: 2.5rem 0;">
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">Maps</a>
+    </div>
+
+    <div class="copyright">
+      © 2025 Bean & Bloom Coffee • Made with love in Tamil Nadu
+    </div>
+  </footer>
+
+</body>
+</html>
