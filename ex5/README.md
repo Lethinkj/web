@@ -13,52 +13,76 @@ This is a simple **three-tier web application** perfect for practical exams:
 ✅ Uses SQLite for easy setup (no separate DB server needed)  
 ✅ CRUD operations (Create, Read, Delete)  
 
-## How to Run
+## How to Run (5th Experiment)
 
-### 1. Download SQLite JDBC Driver
+Use **Tomcat 9.x** for this project (`javax.servlet` imports).
+
+### Linux/macOS
+1. Add SQLite JDBC driver
 ```bash
-cd /home/nobu/Documents/Lab6/web/ex5/WEB-INF/lib/
-# Download sqlite-jdbc JAR (e.g., from Maven Central)
-wget https://github.com/xerial/sqlite-jdbc/releases/download/3.36.0/sqlite-jdbc-3.36.0.jar
-# Or find your Tomcat's lib folder and add it there
+mkdir -p ex5/WEB-INF/lib
+curl -L -o ex5/WEB-INF/lib/sqlite-jdbc-3.46.1.3.jar \
+  https://repo1.maven.org/maven2/org/xerial/sqlite-jdbc/3.46.1.3/sqlite-jdbc-3.46.1.3.jar
 ```
 
-### 2. Compile Java Classes
+2. Compile servlet classes
 ```bash
-cd /home/nobu/Documents/Lab6/web/ex5/WEB-INF/classes/
-
-# Get servlet-api (replace $CATALINA_HOME with your Tomcat path)
-export CATALINA_HOME=/usr/local/tomcat
-
-# Compile all Java files
-javac -cp "$CATALINA_HOME/lib/servlet-api.jar" *.java
+cd ex5/WEB-INF/classes
+export CATALINA_HOME=/path/to/apache-tomcat-9
+javac -cp "$CATALINA_HOME/lib/servlet-api.jar:../lib/*" -d . com/studentapp/*.java
 ```
 
-### 3. Package as WAR
+3. Package WAR
 ```bash
-cd /home/nobu/Documents/Lab6/web/ex5/
+cd ../../
 jar cvf ex5.war *
 ```
 
-### 4. Deploy to Tomcat
+4. Deploy and start
 ```bash
-cp ex5.war $CATALINA_HOME/webapps/
-
-# Start Tomcat
-$CATALINA_HOME/bin/startup.sh
-
-# Wait 10 seconds, then open browser:
-# http://localhost:8080/ex5/
+cp ex5.war "$CATALINA_HOME/webapps/"
+"$CATALINA_HOME/bin/startup.sh"
 ```
 
-### Quick Alternative (Using Python SimpleHTTPServer + JSP)
-Not recommended for production, but for testing:
+Open:
+`http://localhost:8080/ex5/StudentServlet?action=list`
+
+### Windows (CMD) - Added
+1. Add SQLite JDBC driver
+```bat
+cd ex5\WEB-INF
+if not exist lib mkdir lib
+powershell -Command "Invoke-WebRequest -Uri https://repo1.maven.org/maven2/org/xerial/sqlite-jdbc/3.46.1.3/sqlite-jdbc-3.46.1.3.jar -OutFile lib\sqlite-jdbc-3.46.1.3.jar"
+```
+
+2. Compile servlet classes
+```bat
+cd classes
+set CATALINA_HOME=C:\apache-tomcat-9.0.xx
+javac -cp "%CATALINA_HOME%\lib\servlet-api.jar;..\lib\*" -d . com\studentapp\*.java
+```
+
+3. Package WAR
+```bat
+cd ..\..
+jar cvf ex5.war *
+```
+
+4. Deploy and start
+```bat
+copy ex5.war "%CATALINA_HOME%\webapps\"
+"%CATALINA_HOME%\bin\startup.bat"
+```
+
+Open:
+`http://localhost:8080/ex5/StudentServlet?action=list`
+
+### Quick Alternative (Static Server Only)
 ```bash
-cd /home/nobu/Documents/Lab6/web/ex5/
+cd ex5
 python3 -m http.server 8000
-# Open http://localhost:8000/index.jsp
 ```
-(Note: This won't run Java/Servlet; JSP won't execute. You NEED Tomcat for full functionality.)
+This serves only static files. JSP/Servlet will not run without Tomcat.
 
 ## File Structure
 ```
@@ -66,11 +90,12 @@ ex5/
 ├── index.jsp                    (Presentation - Student UI)
 ├── WEB-INF/
 │   ├── classes/
-│   │   ├── Student.java         (Model - Data structure)
-│   │   ├── StudentDAO.java      (Data Access Layer - DB operations)
-│   │   └── StudentServlet.java  (Business Logic - Controller)
+│   │   └── com/studentapp/
+│   │       ├── Student.java         (Model - Data structure)
+│   │       ├── StudentDAO.java      (Data Access Layer - DB operations)
+│   │       └── StudentServlet.java  (Business Logic - Controller)
 │   ├── lib/
-│   │   └── sqlite-jdbc-3.36.0.jar
+│   │   └── sqlite-jdbc-3.46.1.3.jar
 │   └── web.xml                  (Deployment descriptor)
 ```
 
@@ -94,9 +119,10 @@ The database is automatically created on first run.
 - **Advantages**: Separation of concerns, easy maintenance, scalable
 
 ## Common Issues
-- **Servlet not found**: Check web.xml or @WebServlet annotation mapping
-- **Database file not found**: Run from Tomcat's working directory; uses relative path
-- **SQLite driver not found**: Ensure sqlite-jdbc JAR is in WEB-INF/lib/
-- **JSP not rendering**: Make sure you're running in Tomcat, not a static server
+- **Servlet not found**: Check `WEB-INF/web.xml` mapping (`/StudentServlet`)
+- **Tomcat 10/11 errors**: This project uses `javax.servlet.*`; run on Tomcat 9.x
+- **Database file not found**: SQLite DB uses relative path (`students.db`) from runtime
+- **SQLite driver not found**: Ensure `sqlite-jdbc` JAR is in `WEB-INF/lib/`
+- **JSP blank/white page**: Recompile classes and restart Tomcat after code changes
 
 Good luck with your exams! 🚀

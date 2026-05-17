@@ -1,10 +1,10 @@
+package com.studentapp;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
-import javax.servlet.annotation.WebServlet;
 import java.io.*;
 import java.util.List;
 
-@WebServlet("/StudentServlet")
 public class StudentServlet extends HttpServlet {
     private StudentDAO studentDAO = new StudentDAO();
 

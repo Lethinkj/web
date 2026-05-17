@@ -8,7 +8,7 @@
     
     <servlet>
         <servlet-name>StudentServlet</servlet-name>
-        <servlet-class>StudentServlet</servlet-class>
+        <servlet-class>com.studentapp.StudentServlet</servlet-class>
     </servlet>
     
     <servlet-mapping>
@@ -17,6 +17,6 @@
     </servlet-mapping>
     
     <welcome-file-list>
-        <welcome-file>StudentServlet?action=list</welcome-file>
+        <welcome-file>StudentServlet</welcome-file>
     </welcome-file-list>
 </web-app>
