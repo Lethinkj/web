@@ -1,0 +1,19 @@
+students {
+    background-color: lightblue;
+}
+student {
+    display: block;
+    margin: 10px;
+}
+sno {
+    color: green;
+    font-size: 20px;
+}
+sname {
+    color: black;
+    font-size: 18px;
+}
+dob,address,m1,m2,m3 {
+    color: blue;
+    font-size: 16px;
+}

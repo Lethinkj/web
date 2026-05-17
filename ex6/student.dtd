@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!ELEMENT students (student+)>
+<!ELEMENT student (sno,sname,dob,address,m1,m2,m3)>
+<!ELEMENT sno (#PCDATA)>
+<!ELEMENT sname (#PCDATA)>
+<!ELEMENT dob (#PCDATA)>
+<!ELEMENT address (#PCDATA)>
+<!ELEMENT m1 (#PCDATA)>
+<!ELEMENT m2 (#PCDATA)>
+<!ELEMENT m3 (#PCDATA)>

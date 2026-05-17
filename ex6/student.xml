@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/css" href="student.css"?>
+<!DOCTYPE student SYSTEM "student.dtd">
+<students>
+    <student>
+        <sno>2021001</sno>
+        <sname>Alice</sname>
+        <address>123 Main St</address>
+        <m1>85</m1>
+        <m2>90</m2>
+        <m3>88</m3>
+    </student>
+    <student>
+        <sno>2021002</sno>
+        <sname>Bob</sname>
+        <address>456 Elm St</address>
+        <m1>78</m1>
+        <m2>82</m2>
+        <m3>80</m3>
+    </student>
+    <student>
+        <sno>2021003</sno>
+        <sname>Charlie</sname>
+        <address>789 Oak St</address>
+        <m1>92</m1>
+        <m2>88</m2>
+        <m3>91</m3>
+    </student>
+</students>
